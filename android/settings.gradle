@@ -1,0 +1,3 @@
+rootProject.name = 'State'
+
+include ':app'
