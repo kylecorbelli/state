@@ -12,6 +12,23 @@ import {
   View
 } from 'react-native';
 
+import {
+  increment,
+  decrement,
+  incrementBy,
+  decrementBy
+} from './actions';
+
+import configureStore from './configure-store';
+
+const store = configureStore();
+
+store.dispatch(increment());
+store.dispatch(incrementBy(14));
+store.dispatch(decrementBy(13));
+store.dispatch(decrement());
+store.dispatch(decrement());
+
 export default class State extends Component {
   render() {
     return (
