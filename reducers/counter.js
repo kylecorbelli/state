@@ -2,6 +2,8 @@ import * as constants from '../constants';
 
 const counter = (state = 0, action) => {
   switch(action.type) {
+    case constants.SYNC_COUNTER:
+      return action.payload.data.currentValue;
     case constants.INCREMENT:
       return state + 1;
     case constants.DECREMENT:

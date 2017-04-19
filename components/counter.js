@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
@@ -7,33 +7,44 @@ import {
 import { connect } from 'react-redux';
 import {
   increment,
-  decrement
+  decrement,
+  syncCloudCount
 } from '../actions';
 import ChangeCounterValueButton from './change-counter-value-button';
 
-const Counter = ({ counter, increment, decrement }) => (
-  <View style={styles.screen}>
-    <Text style={styles.content}>{counter}</Text>
-    <View style={styles.buttons}>
-      <ChangeCounterValueButton
-        text='-'
-        color='#baa077'
-        onPress={decrement}
-      />
-      <ChangeCounterValueButton
-        text='+'
-        color='#77dd79'
-        onPress={increment}
-      />
-    </View>
-  </View>
-);
+class Counter extends Component {
+  static propTypes = {
+    counter: PropTypes.number.isRequired,
+    increment: PropTypes.func.isRequired,
+    decrement: PropTypes.func.isRequired,
+    syncCloudCount: PropTypes.func.isRequired
+  };
 
-Counter.propTypes = {
-  counter: PropTypes.number.isRequired,
-  increment: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired
-};
+  componentDidMount() {
+    this.props.syncCloudCount();
+  }
+
+  render() {
+    const { counter, increment, decrement, syncCloudCount } = this.props;
+    return (
+      <View style={styles.screen}>
+        <Text style={styles.content}>{counter}</Text>
+        <View style={styles.buttons}>
+          <ChangeCounterValueButton
+            text='-'
+            color='#baa077'
+            onPress={decrement}
+          />
+          <ChangeCounterValueButton
+            text='+'
+            color='#77dd79'
+            onPress={increment}
+          />
+        </View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   screen: {
@@ -63,5 +74,5 @@ export { Counter };
 
 export default connect(
   mapStateToProps,
-  { increment, decrement }
+  { increment, decrement, syncCloudCount }
 )(Counter);

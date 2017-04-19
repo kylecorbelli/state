@@ -10,6 +10,7 @@ describe('<Counter />', () => {
         counter={6}
         increment={() => {}}
         decrement={() => {}}
+        syncCloudCount={() => {}}
       />
     ).toJSON();
     expect(tree).toMatchSnapshot();
