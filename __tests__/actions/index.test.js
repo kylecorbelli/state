@@ -3,15 +3,11 @@ import * as actions from '../../actions';
 
 describe('actions', () => {
   it('should create an action to increment the counter by one', () => {
-    expect(actions.increment()).toEqual({
-      type: constants.INCREMENT
-    });
+    expect(actions.increment().type).toEqual(constants.INCREMENT);
   });
 
   it('should create an action to decrement the counter by one', () => {
-    expect(actions.decrement()).toEqual({
-      type: constants.DECREMENT
-    });
+    expect(actions.decrement().type).toEqual(constants.DECREMENT);
   });
 
   it('should create an action to increment the counter by an arbitrary amount', () => {
