@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import {
   View,
+  ScrollView,
+  RefreshControl,
   Text,
   StyleSheet
 } from 'react-native';
@@ -14,7 +16,7 @@ import ChangeCounterValueButton from './change-counter-value-button';
 
 class Counter extends Component {
   static propTypes = {
-    counter: PropTypes.number.isRequired,
+    counter: PropTypes.object.isRequired,
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
     syncCloudCount: PropTypes.func.isRequired
@@ -27,8 +29,16 @@ class Counter extends Component {
   render() {
     const { counter, increment, decrement, syncCloudCount } = this.props;
     return (
-      <View style={styles.screen}>
-        <Text style={styles.content}>{counter}</Text>
+      <ScrollView
+        contentContainerStyle={styles.screen}
+        refreshControl={
+          <RefreshControl
+            refreshing={counter.isSyncing}
+            onRefresh={syncCloudCount}
+          />
+        }
+      >
+        <Text style={styles.content}>{counter.currentValue}</Text>
         <View style={styles.buttons}>
           <ChangeCounterValueButton
             text='-'
@@ -41,7 +51,7 @@ class Counter extends Component {
             onPress={increment}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

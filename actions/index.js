@@ -14,7 +14,7 @@ export const increment = () => ({
           action: 'increment'
         }
       },
-      commit: { type: constants.DO_NOTHING },
+      commit: { type: constants.SYNC_COUNTER },
       rollback: { type: constants.DECREMENT }
     }
   }
@@ -31,7 +31,7 @@ export const decrement = () => ({
           action: 'decrement'
         }
       },
-      commit: { type: constants.DO_NOTHING },
+      commit: { type: constants.SYNC_COUNTER },
       rollback: { type: constants.INCREMENT }
     }
   }
@@ -52,7 +52,7 @@ export const decrementBy = (number) => ({
 });
 
 export const syncCloudCount = () => ({
-  type: constants.DO_NOTHING,
+  type: constants.START_SYNCING_COUNTER,
   meta: {
     offline: {
       effect: {
@@ -60,7 +60,7 @@ export const syncCloudCount = () => ({
         method: 'GET'
       },
       commit: { type: constants.SYNC_COUNTER },
-      rollback: { type: constants.DO_NOTHING }
+      rollback: { type: constants.FINISH_SYNCING_COUNTER }
     }
   }
 });
