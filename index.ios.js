@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import Counter from './components/counter';
+import Router from './router';
 import {
   AppRegistry,
   StyleSheet,
@@ -23,7 +24,7 @@ export default class State extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Counter />
+        <Router />
       </Provider>
     );
   }
