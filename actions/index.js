@@ -14,7 +14,7 @@ export const increment = () => ({
           action: 'increment'
         }
       },
-      commit: { type: constants.SYNC_COUNTER },
+      commit: { type: constants.DO_NOTHING },
       rollback: { type: constants.DECREMENT }
     }
   }
@@ -31,7 +31,7 @@ export const decrement = () => ({
           action: 'decrement'
         }
       },
-      commit: { type: constants.SYNC_COUNTER },
+      commit: { type: constants.DO_NOTHING },
       rollback: { type: constants.INCREMENT }
     }
   }
